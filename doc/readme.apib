@@ -1,0 +1,535 @@
+# iDocument REST API
+
+# Group colleges
+## colleges list [/admin/colleges]
+### create a new college [POST]
++ Request (application/json)
+
+        {
+          name: '计算机与软件学院',
+          picture: 'http://7qna7i.com1.z0.glb.clouddn.com/1.jpg'
+        }
++ Response 200 (application/json)
+
+        {
+          success: 'add a college successful!'
+        }
+
+### Retrieve list of all colleges [GET]
++ Response 200 (application/json)
+
+        [{
+          name: '语言文化学院',
+          picture: 'http://7qna7i.com1.z0.glb.clouddn.com/1.jpg'
+        },{
+          name: '计算机与软件学院',
+          picture: 'http://7qna7i.com1.z0.glb.clouddn.com/1.jpg'
+        },{
+          name: '传媒学院',
+          picture: 'http://7qna7i.com1.z0.glb.clouddn.com/1.jpg'
+        },{
+          name: '数学与统计学院',
+          picture: 'http://7qna7i.com1.z0.glb.clouddn.com/1.jpg'
+        }]
+
+## college [/admin/colleges/{id}]
+
++ Parameters
+
+    + id(number) - 53113d6e1eb6e2b9546b5a91
+
+### Retrieve a specific college [GET]
++ Response 200 (application/json)
+
+        {
+          name: '语言文化学院',
+          picture: 'http://7qna7i.com1.z0.glb.clouddn.com/1.jpg'
+        }
+
+### Delete a specific college [DELETE]
++ Response 200 (application/json)
+
+        {
+         success: 1,
+         msg: 'delete a college successfully!'
+        }
+
++ Response 404 (application/json)
+
+        { 
+          success: 0,
+          msg: 'college not found!'
+        }
+
+# Group courses
+## courses list [/admin/courses]
+### create a new course [POST]
++ Request (application/json)
+
+        {
+          name: '数据结构',
+          type: 'general',
+          college:'530fe1a120be5f5d51a7f658',
+          picture: 'http://i1.tietuku.com/8b8295c011fbced1.jpg'
+        }
+
++ Response 200 (application/json)
+
+        {
+          success: 'add a course successful!'
+        }
+
+### Retrieve list of all courses [GET]
++ Response 200 (application/json)
+
+        [{
+          name: '数据结构',
+          type: 'general',
+          college:'530fe1a120be5f5d51a7f658',
+          picture: 'http://i1.tietuku.com/8b8295c011fbced1.jpg'
+        },{
+          name: '高等数学',
+          type: 'general',
+          college:'530fe1a120be5f5d51a7f658',
+          picture: 'http://i1.tietuku.com/8b8295c011fbced1.jpg'
+        },{
+          name: '大地测量学基础',
+          type: 'professional',
+          college:'530fe1a120be5f5d51a7f658',
+          picture: 'http://i1.tietuku.com/8b8295c011fbced1.jpg'
+        }]
+
+## course [/admin/courses/{id}]
+
++ Parameters
+
+    + id(number) - 53113d6e1eb6e2b9546b5a91
+
+### Retrieve a specific course [GET]
++ Response 200 (application/json)
+
+        {
+          name: '数据结构',
+          type: 'general',
+          college:'530fe1a120be5f5d51a7f658',
+          picture: 'http://i1.tietuku.com/8b8295c011fbced1.jpg'
+        }
+
+### Delete a specific course [DELETE]
++ Response 200
++ Response 404 (application/json)
+
+        {
+          error: 'course not found!'
+        }
+
+# Group docs
+## docs list [/admin/docs]
+### create a new doc [POST]
++ Request (application/json)
+
+        {
+          name: '高等数学1（理）09-10期末考试A卷及答案',
+          fileType: 'pdf',
+          courseType: 'general',
+          course:'530fe1a120be5f5d51a7f658',
+          college:'530fe1a120be5f5d51a7f658',
+          link: 'http://pan.baidu.com/s/1pJyMqG7',
+          download: 0
+        }
+
++ Response 200 (application/json)
+
+        {
+          success: 'add a doc successful!'
+        }
+
+### Retrieve list of all docs [GET]
++ Response 200 (application/json)
+
+        [{
+          name: '高等数学1（理）09-10期末考试A卷及答案',
+          fileType: 'pdf',
+          courseType: 'general',
+          course:'530fe1a120be5f5d51a7f658',
+          college:'530fe1a120be5f5d51a7f658',
+          link: 'http://pan.baidu.com/s/1pJyMqG7',
+          download: 0
+        },{
+          name: 'C语言07-08期末试卷A卷',
+          fileType: 'pdf',
+          courseType: 'general',
+          course:'530fe1a120be5f5d51a7f658',
+          college:'530fe1a120be5f5d51a7f658',
+          link: 'http://pan.baidu.com/s/1pJyMqG7',
+          download: 0
+        },{
+          name: '高等数学1（理）09-10期末考试A卷及答案',
+          fileType: 'pdf',
+          courseType: 'general',
+          course:'530fe1a120be5f5d51a7f658',
+          college:'530fe1a120be5f5d51a7f658',
+          link: 'http://pan.baidu.com/s/1pJyMqG7',
+          download: 0
+        },]
+
+## doc [/admin/docs/{id}]
+
++ Parameters
+
+    + id(ObjectId) - 53113d6e1eb6e2b9546b5a91
+
+### Retrieve a specific doc [GET]
++ Response 200 (application/json)
+
+        {
+          name: '高等数学1（理）09-10期末考试A卷及答案',
+          fileType: 'pdf',
+          courseType: 'general',
+          course:'530fe1a120be5f5d51a7f658',
+          college:'530fe1a120be5f5d51a7f658',
+          link: 'http://pan.baidu.com/s/1pJyMqG7',
+          download: 0
+        }
+
+### Delete a specific doc [DELETE]
++ Response 200
++ Response 404 (application/json)
+
+        {
+          error: 'doc not found!'
+        }
+
+# Group general
+
+## general [/api/general]
+
+### Retrieves list of general courses [GET]
+
++ Response 200 (application/json)
+
+        [
+            {
+                "_id": "560957d047a9a60dc8070757",
+                "name": "计算机组成原理",
+                "type": "general",
+                "college": "5609222f57dec8cd9ad529a3",
+                "picture": "http://i1.tietuku.com/8b8295c011fbced1.jpg",
+                "__v": 0,
+                "meta": {
+                    "updateAt": "2015-09-28T15:08:00.261Z",
+                    "createAt": "2015-09-28T15:08:00.261Z"
+                }
+            },
+            {
+                "_id": "5609685b130a14ebe58445ad",
+                "name": "C语言程序设计",
+                "type": "general",
+                "college": "5609222f57dec8cd9ad529a3",
+                "picture": "http://i1.tietuku.com/8b8295c011fbced1.jpg",
+                "__v": 0,
+                "meta": {
+                    "updateAt": "2015-09-28T16:18:35.654Z",
+                    "createAt": "2015-09-28T16:18:35.654Z"
+                }
+            },
+            {
+                "_id": "5609683d130a14ebe58445ac",
+                "name": "高等数学",
+                "type": "general",
+                "college": "560967f2130a14ebe58445a9",
+                "picture": "http://i1.tietuku.com/8b8295c011fbced1.jpg",
+                "__v": 0,
+                "meta": {
+                    "updateAt": "2015-09-28T16:18:05.519Z",
+                    "createAt": "2015-09-28T16:18:05.519Z"
+                }
+            }
+        ]
+
+## fetch general course's docs list [/api/courses/{courseId}]  
+
++ Parameters
+
+    + courseId(ObjecId) - a special course
+
+### fetch course's docs list [GET]
+
++ Response 200 (application/json)
+
+        [
+            {
+                "_id": "5609661b130a14ebe58445a8",
+                "name": "计算机组成原理2015期末卷",
+                "fileType": "pdf",
+                "course": "560957d047a9a60dc8070757",
+                "college": "5609222f57dec8cd9ad529a3",
+                "link": "http://pan.baidu.com/s/1pJyMqG7",
+                "download": 2,
+                "__v": 0,
+                "meta": {
+                    "updateAt": "2015-09-28T16:08:59.119Z",
+                    "createAt": "2015-09-28T16:08:59.119Z"
+                }
+            }
+        ]
+        
+# Group professional
+
+## colleges list [/api/professional]
+
+### Retrieves list of colleges [GET]
+
++ Response 200 (application/json)
+
+        [
+            {
+                "_id": "5609222f57dec8cd9ad529a3",
+                "name": "计算机与软件学院",
+                "picture": "/img/1.jpgdddd",
+                "__v": 0,
+                "meta": {
+                    "updateAt": "2015-09-28T11:22:23.967Z",
+                    "createAt": "2015-09-28T11:19:11.669Z"
+                }
+            },
+            {
+                "_id": "56094b5378b11ef7b0bf7ab5",
+                "name": "语言文化学院",
+                "picture": "/img/2.jpg",
+                "__v": 0,
+                "meta": {
+                    "updateAt": "2015-09-28T14:14:43.654Z",
+                    "createAt": "2015-09-28T14:14:43.654Z"
+                }
+            },
+            {
+                "_id": "560967f2130a14ebe58445a9",
+                "name": "数学与统计学院",
+                "picture": "/img/1.jpg",
+                "__v": 0,
+                "meta": {
+                    "updateAt": "2015-09-28T16:16:50.172Z",
+                    "createAt": "2015-09-28T16:16:50.172Z"
+                }
+            },
+            {
+                "_id": "5609680c130a14ebe58445aa",
+                "name": "大气科学学院",
+                "picture": "/img/1.jpg",
+                "__v": 0,
+                "meta": {
+                    "updateAt": "2015-09-28T16:17:16.357Z",
+                    "createAt": "2015-09-28T16:17:16.357Z"
+                }
+            },
+            {
+                "_id": "5609681d130a14ebe58445ab",
+                "name": "水文气象学院",
+                "picture": "/img/1.jpg",
+                "__v": 0,
+                "meta": {
+                    "updateAt": "2015-09-28T16:17:33.965Z",
+                    "createAt": "2015-09-28T16:17:33.965Z"
+                }
+            }
+        ]
+
+## college's courses list [/api/professional/{collegeId}]
+
++ Parameters
+    + collegeId(ObjecId)- a special college
+    
+### Retrieves list of a colleges's courses [GET]
+
++ Response 200 (application/json)
+
+        [
+            {
+                "_id": "560957d047a9a60dc8070757",
+                "name": "计算机组成原理",
+                "type": "general",
+                "college": "5609222f57dec8cd9ad529a3",
+                "picture": "http://i1.tietuku.com/8b8295c011fbced1.jpg",
+                "__v": 0,
+                "meta": {
+                    "updateAt": "2015-09-28T15:08:00.261Z",
+                    "createAt": "2015-09-28T15:08:00.261Z"
+                }
+            },
+            {
+                "_id": "5609685b130a14ebe58445ad",
+                "name": "C语言程序设计",
+                "type": "general",
+                "college": "5609222f57dec8cd9ad529a3",
+                "picture": "http://i1.tietuku.com/8b8295c011fbced1.jpg",
+                "__v": 0,
+                "meta": {
+                    "updateAt": "2015-09-28T16:18:35.654Z",
+                    "createAt": "2015-09-28T16:18:35.654Z"
+                }
+            },
+            {
+                "_id": "56096872130a14ebe58445ae",
+                "name": "操作系统",
+                "type": "professional",
+                "college": "5609222f57dec8cd9ad529a3",
+                "picture": "http://i1.tietuku.com/8b8295c011fbced1.jpg",
+                "__v": 0,
+                "meta": {
+                    "updateAt": "2015-09-28T16:18:58.541Z",
+                    "createAt": "2015-09-28T16:18:58.541Z"
+                }
+            },
+            {
+                "_id": "560968ba130a14ebe58445af",
+                "name": "面向对象程序设计",
+                "type": "professional",
+                "college": "5609222f57dec8cd9ad529a3",
+                "picture": "http://i1.tietuku.com/8b8295c011fbced1.jpg",
+                "__v": 0,
+                "meta": {
+                    "updateAt": "2015-09-28T16:20:10.457Z",
+                    "createAt": "2015-09-28T16:20:10.457Z"
+                }
+            }
+        ]
+
+# Group Doc
+## lasted docs [/api/docs/lasted]
+
+### Retrieves six lasted docs [GET]
+
++ Response 200 (application/json)
+
+        [
+            {
+                "_id": "5609691a130a14ebe58445b2",
+                "name": "高等数学1（理）11-12期末考试A卷及答案",
+                "fileType": "pdf",
+                "course": "5609683d130a14ebe58445ac",
+                "college": "5609222f57dec8cd9ad529a3",
+                "link": "http://pan.baidu.com/s/1pJyMqG7",
+                "download": 0,
+                "__v": 0,
+                "meta": {
+                    "updateAt": "2015-09-28T16:21:46.168Z",
+                    "createAt": "2015-09-28T16:21:46.168Z"
+                }
+            },
+            {
+                "_id": "56096900130a14ebe58445b1",
+                "name": "高等数学1（理）10-11期末考试A卷及答案",
+                "fileType": "pdf",
+                "course": "5609683d130a14ebe58445ac",
+                "college": "5609222f57dec8cd9ad529a3",
+                "link": "http://pan.baidu.com/s/1pJyMqG7",
+                "download": 0,
+                "__v": 0,
+                "meta": {
+                    "updateAt": "2015-09-28T16:21:20.089Z",
+                    "createAt": "2015-09-28T16:21:20.089Z"
+                }
+            },
+            {
+                "_id": "560968e3130a14ebe58445b0",
+                "name": "高等数学1（理）09-10期末考试A卷及答案",
+                "fileType": "pdf",
+                "course": "5609683d130a14ebe58445ac",
+                "college": "5609222f57dec8cd9ad529a3",
+                "link": "http://pan.baidu.com/s/1pJyMqG7",
+                "download": 0,
+                "__v": 0,
+                "meta": {
+                    "updateAt": "2015-09-28T16:20:51.836Z",
+                    "createAt": "2015-09-28T16:20:51.836Z"
+                }
+            },
+            {
+                "_id": "5609661b130a14ebe58445a8",
+                "name": "计算机组成原理2015期末卷",
+                "fileType": "pdf",
+                "course": "560957d047a9a60dc8070757",
+                "college": "5609222f57dec8cd9ad529a3",
+                "link": "http://pan.baidu.com/s/1pJyMqG7",
+                "download": 0,
+                "__v": 0,
+                "meta": {
+                    "updateAt": "2015-09-28T16:08:59.119Z",
+                    "createAt": "2015-09-28T16:08:59.119Z"
+                }
+            }
+        ]
+
+## hot docs [/api/docs/hot]
+
+### Retrieves six hot docs [GET]
+
++ Response 200 (application/json)
+
+        [
+            {
+                "_id": "5609661b130a14ebe58445a8",
+                "name": "计算机组成原理2015期末卷",
+                "fileType": "pdf",
+                "course": "560957d047a9a60dc8070757",
+                "college": "5609222f57dec8cd9ad529a3",
+                "link": "http://pan.baidu.com/s/1pJyMqG7",
+                "download": 0,
+                "__v": 0,
+                "meta": {
+                    "updateAt": "2015-09-28T16:08:59.119Z",
+                    "createAt": "2015-09-28T16:08:59.119Z"
+                }
+            },
+            {
+                "_id": "560968e3130a14ebe58445b0",
+                "name": "高等数学1（理）09-10期末考试A卷及答案",
+                "fileType": "pdf",
+                "course": "5609683d130a14ebe58445ac",
+                "college": "5609222f57dec8cd9ad529a3",
+                "link": "http://pan.baidu.com/s/1pJyMqG7",
+                "download": 0,
+                "__v": 0,
+                "meta": {
+                    "updateAt": "2015-09-28T16:20:51.836Z",
+                    "createAt": "2015-09-28T16:20:51.836Z"
+                }
+            },
+            {
+                "_id": "56096900130a14ebe58445b1",
+                "name": "高等数学1（理）10-11期末考试A卷及答案",
+                "fileType": "pdf",
+                "course": "5609683d130a14ebe58445ac",
+                "college": "5609222f57dec8cd9ad529a3",
+                "link": "http://pan.baidu.com/s/1pJyMqG7",
+                "download": 0,
+                "__v": 0,
+                "meta": {
+                    "updateAt": "2015-09-28T16:21:20.089Z",
+                    "createAt": "2015-09-28T16:21:20.089Z"
+                }
+            },
+            {
+                "_id": "5609691a130a14ebe58445b2",
+                "name": "高等数学1（理）11-12期末考试A卷及答案",
+                "fileType": "pdf",
+                "course": "5609683d130a14ebe58445ac",
+                "college": "5609222f57dec8cd9ad529a3",
+                "link": "http://pan.baidu.com/s/1pJyMqG7",
+                "download": 0,
+                "__v": 0,
+                "meta": {
+                    "updateAt": "2015-09-28T16:21:46.168Z",
+                    "createAt": "2015-09-28T16:21:46.168Z"
+                }
+            }
+        ]
+
+## download a doc [/api/docs/{id}/downloaded]
+### download a doc from server [PUT]
++ Response 200 (application/json)
+  
+        {
+          success: 1
+        }

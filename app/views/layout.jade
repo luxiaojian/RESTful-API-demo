@@ -1,0 +1,58 @@
+doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/css/bootstrap.min.css')
+    link(rel='stylesheet', href='/css/style.css')
+    script(src="/js/jquery.min.js")
+    script(src="/js/bootstrap.min.js")
+  body
+    nav.navbar.navbar-default#nav-panel(style="border-bottom: 0;")
+      .container-fluid
+        .navbar-header
+          .navbar-brand IDocument文档后台
+        .collapse.navbar-collapse
+          ul.nav.navbar-right.navbar-nav
+            li
+              a(href="") 登录
+            li
+              a(href="") 注册
+
+    #leftBar
+      ul
+        li
+          a(href="/admin/colleges/add")
+            span.glyphicon.glyphicon-plus
+            span 添加学院
+        li
+          a(href="/admin/colleges/")
+            span.glyphicon.glyphicon-th
+            span 学院列表
+        li
+          a(href="/admin/courses/add")
+            span.glyphicon.glyphicon-blackboard
+            span 添加学科
+        li
+          a(href="/admin/courses/")
+            span.glyphicon.glyphicon-th-list
+            span 学科列表
+        li
+          a(href="/admin/docs/add")
+            span.glyphicon.glyphicon-file
+            span 添加文档
+        li
+          a(href="/admin/docs/")
+            span.glyphicon.glyphicon-menu-hamburger
+            span 文档列表
+
+    .body
+      if(locals.success)
+        .alert.alert-success #{locals.success}
+          button(type="button",class="close",data-dismiss="alert")
+            span(aria-hidden="true") &times;
+      if(locals.error)
+        .alert.alert-error #{locals.error}
+          button(type="button",class="close",data-dismiss="alert")
+            span(aria-hidden="true") &times;
+
+      block content

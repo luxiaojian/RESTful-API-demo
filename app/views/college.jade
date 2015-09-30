@@ -1,0 +1,21 @@
+extends layout
+
+block content
+  form.form-horizontal(method="POST",action="/admin/colleges")
+    .form-group.clearfix
+      label.col-md-2.control-label(for="collegeName") 学院名字
+      .col-md-8
+        if (college && college.name)
+          input.form-control(type="text",name="college[name]",value=college.name)
+        else
+          input.form-control(type="text",name="college[name]")
+    .form-group.clearfix
+      label.col-md-2.control-label(for="collegePicture") 学院缩略图
+      .col-md-8
+        if (college && college.picture)
+          input.form-control(type="text",name="college[picture]",value=college.picture)
+        else
+          input.form-control(type="text",name="college[picture]")
+    .form-group.clearfix
+      .col-md-offset-2
+        button.btn.btn-primary 保存

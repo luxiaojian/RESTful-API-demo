@@ -1,0 +1,25 @@
+extends layout
+
+block content
+  .panel.panel-default
+    .panel-heading
+      h3.panel-title 学院列表
+    table.table.table-bordered.table-hover
+      thead
+        tr
+          th 学院名字
+          th 编辑
+          th 删除
+      tbody
+        if colleges
+          each college in colleges
+            tr(class="item-id-#{college._id}")
+              th #{college.name}
+              th
+                a.btn.btn-primary.btn-sm(href="/admin/colleges/#{college._id}/edit") 编辑
+              th
+                a.btn.btn-danger.btn-sm.del(data-id="#{college._id}",href="javascript:;") 删除
+  script(src="/js/delcolllege.js")
+  
+  
+

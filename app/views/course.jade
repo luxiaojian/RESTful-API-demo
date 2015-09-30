@@ -1,0 +1,43 @@
+extends layout
+
+block content
+  form.form-horizontal(method="POST",action="/admin/courses")
+    if (course && course.name)
+      input.form-control(type="hidden",name="course[id]",value=course._id)
+    else
+      input.form-control(type="hidden",name="course[id]")
+    .form-group.clearfix
+      label.col-md-2.control-label(for="courseName") 课程名字
+      .col-md-8
+        if (course && course.name)
+          input.form-control(type="text",name="course[name]",value=course.name)
+        else
+          input.form-control(type="text",name="course[name]")
+    .form-group.clearfix
+      label.col-md-2.control-label(for="coursePicture") 课程类型
+      .col-md-8
+          select.form-control(name="course[type]")
+            if (course && course.type ==='general')
+              option(value="general" selected) 通修课
+            else
+              option(value="general") 通修课
+            if (course && course.type ==='professional')
+              option(value="professional" selected) 专业课
+            else
+              option(value="professional") 专业课
+    .form-group.clearfix
+      label.col-md-2.control-label 所属学院
+      .col-md-8
+        select.form-control(name="course[college]")
+          each college in colleges
+            option(value="#{college._id}") #{college.name}
+    .form-group.clearfix
+      label.col-md-2.control-label(for="coursePicture") 课程缩略图
+      .col-md-8
+        if (course && course.picture)
+          input.form-control(type="text",name="course[picture]",value=course.picture)
+        else
+          input.form-control(type="text",name="course[picture]")
+    .form-group.clearfix
+      .col-md-offset-2
+        button.btn.btn-primary 保存

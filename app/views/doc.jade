@@ -1,0 +1,54 @@
+extends layout
+
+block content
+  form.form-horizontal(method="POST",action="/admin/docs")
+    if (doc && doc._id)
+      input.form-control(type="hidden",name="doc[id]",value=doc._id)
+    else
+      input.form-control(type="hidden",name="doc[id]")
+    .form-group.clearfix
+      label.col-md-2.control-label(for="docTitle") 文档标题
+      .col-md-8
+        if (doc && doc.name)
+          input.form-control(type="text",name="doc[name]",value=doc.name)
+        else
+          input.form-control(type="text",name="doc[name]")
+    .form-group.clearfix
+      label.col-md-2.control-label(for="docFileType") 文档类型
+      .col-md-8
+          select.form-control(name="doc[fileType]")
+            if (doc && doc.fileType ==='pdf')
+              option(value="pdf" selected) pdf
+            else
+              option(value="pdf") pdf
+            if (doc && doc.fileType ==='doc')
+              option(value="doc" selected) doc
+            else
+              option(value="doc") doc
+            if (doc && doc.fileType ==='ppt')
+              option(value="ppt" selected) ppt
+            else
+              option(value="ppt") ppt
+    .form-group.clearfix
+      label.col-md-2.control-label 课程名称
+      .col-md-8
+        select.form-control(name="doc[course]")
+          each course in courses
+            option(value="#{course._id}") #{course.name}
+
+    .form-group.clearfix
+      label.col-md-2.control-label 所属学院
+      .col-md-8
+        select.form-control(name="doc[college]")
+          each college in colleges
+            option(value="#{college._id}") #{college.name}
+    .form-group.clearfix
+      label.col-md-2.control-label(for="docPicture") 下载地址
+      .col-md-8
+        if (doc && doc.link)
+          input.form-control(type="text",name="doc[link]",value=doc.link)
+        else
+          input.form-control(type="text",name="doc[link]")
+    .form-group.clearfix
+      .col-md-offset-2
+        button.btn.btn-primary 保存

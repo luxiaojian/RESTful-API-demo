@@ -1,0 +1,543 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><title>iDocument REST API</title><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"><style>@import url('https://fonts.googleapis.com/css?family=Roboto:400,700|Inconsolata|Raleway:200');.hljs-comment,.hljs-title{color:#8e908c}.hljs-variable,.hljs-attribute,.hljs-tag,.hljs-regexp,.ruby .hljs-constant,.xml .hljs-tag .hljs-title,.xml .hljs-pi,.xml .hljs-doctype,.html .hljs-doctype,.css .hljs-id,.css .hljs-class,.css .hljs-pseudo{color:#c82829}.hljs-number,.hljs-preprocessor,.hljs-pragma,.hljs-built_in,.hljs-literal,.hljs-params,.hljs-constant{color:#f5871f}.ruby .hljs-class .hljs-title,.css .hljs-rules .hljs-attribute{color:#eab700}.hljs-string,.hljs-value,.hljs-inheritance,.hljs-header,.ruby .hljs-symbol,.xml .hljs-cdata{color:#718c00}.css .hljs-hexcolor{color:#3e999f}.hljs-function,.python .hljs-decorator,.python .hljs-title,.ruby .hljs-function .hljs-title,.ruby .hljs-title .hljs-keyword,.perl .hljs-sub,.javascript .hljs-title,.coffeescript .hljs-title{color:#4271ae}.hljs-keyword,.javascript .hljs-function{color:#8959a8}.hljs{display:block;background:white;color:#4d4d4c;padding:.5em}.coffeescript .javascript,.javascript .xml,.tex .hljs-formula,.xml .javascript,.xml .vbscript,.xml .css,.xml .hljs-cdata{opacity:.5}body{color:black;background:white;font-family:'Roboto',Helvetica,sans-serif;font-size:14px;line-height:1.42}header{border-bottom:1px solid #f2f2f2;margin-bottom:12px}h1,h2,h3,h4,h5{color:black;margin:12px 0}h1 .permalink,h2 .permalink,h3 .permalink,h4 .permalink,h5 .permalink{margin-left:6px;opacity:0;transition:opacity .25s ease}h1:hover .permalink,h2:hover .permalink,h3:hover .permalink,h4:hover .permalink,h5:hover .permalink{opacity:1}h1{font-family:'Raleway',Helvetica,sans-serif;font-size:36px;font-weight:500}h2{font-family:'Raleway',Helvetica,sans-serif;font-size:30px;font-weight:500}h3{font-size:100%;text-transform:uppercase}h5{font-size:100%;font-weight:normal}p{margin:0 0 10px}p.choices{line-height:1.6}a{color:#428bca;text-decoration:none}li p{margin:0}dl dt{float:left;width:160px;clear:left;text-align:right;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:700}dl dd{margin-left:180px}blockquote{color:rgba(0,0,0,0.5);font-size:15.5px;padding:10px 20px;margin:12px 0;border-left:5px solid #e8e8e8}blockquote p:last-child{margin-bottom:0}pre{background-color:#f5f5f5;padding:12px;border:1px solid #cfcfcf;border-radius:6px;overflow:auto}pre code{background-color:transparent;padding:0;border:none}code{color:#444;background-color:#f5f5f5;font-family:'Inconsolata',monospace;padding:1px 4px;border:1px solid #cfcfcf;border-radius:3px}ul,ol{padding-left:2em}table{border-collapse:collapse;border-spacing:0;margin-bottom:12px}table tr:nth-child(2n){background-color:#fafafa}table th,table td{padding:6px 12px;border:1px solid #d9d9d9}.note,.warning{padding:.3em 1em;margin:1em 0;border-radius:2px;font-size:90%}.note h1,.warning h1,.note h2,.warning h2,.note h3,.warning h3,.note h4,.warning h4,.note h5,.warning h5,.note h6,.warning h6{font-family:'Raleway',Helvetica,sans-serif;font-size:135%;font-weight:500}.note p,.warning p{margin:.5em 0}.note{color:black;background-color:#f0f6fb;border-left:4px solid #428bca}.note h1,.note h2,.note h3,.note h4,.note h5,.note h6{color:#428bca}.warning{color:black;background-color:#fbf1f0;border-left:4px solid #c9302c}.warning h1,.warning h2,.warning h3,.warning h4,.warning h5,.warning h6{color:#c9302c}nav{position:fixed;top:24px;bottom:0;overflow-y:auto}nav .resource-group{padding:0}nav .resource-group .heading{position:relative}nav .resource-group .heading .chevron{position:absolute;top:12px;right:12px;opacity:.5}nav .resource-group .heading a{display:block;color:black;opacity:.7;border-left:2px solid transparent;margin:0}nav .resource-group .heading a:hover{border-left:2px solid black}nav ul{list-style-type:none;padding-left:0}nav ul a{display:block;font-size:13px;color:rgba(0,0,0,0.7);padding:8px 12px;border-top:1px solid #d9d9d9;border-left:2px solid transparent;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}nav ul a:hover{border-left:2px solid black}nav ul>li{margin:0}nav ul>li:first-child{margin-top:-12px}nav ul>li:last-child{margin-bottom:-12px}nav ul ul a{padding-left:24px}nav ul ul li{margin:0}nav ul ul li:first-child{margin-top:0}nav ul ul li:last-child{margin-bottom:0}nav>div>div>ul>li:first-child>a{border-top:none}.preload *{transition:none !important}.pull-left{float:left}.pull-right{float:right}.badge{display:inline-block;float:right;min-width:10px;min-height:14px;padding:3px 7px;font-size:12px;color:#000;background-color:#f2f2f2;border-radius:10px;margin-top:-2px;margin-bottom:-2px}.badge.get{color:#70bbe1;background-color:#d9edf7}.badge.head{color:#70bbe1;background-color:#d9edf7}.badge.options{color:#70bbe1;background-color:#d9edf7}.badge.put{color:#f0db70;background-color:#fcf8e3}.badge.patch{color:#f0db70;background-color:#fcf8e3}.badge.post{color:#93cd7c;background-color:#dff0d8}.badge.delete{color:#ce8383;background-color:#f2dede}.collapse-button{float:right}.collapse-button .close{display:none;color:#428bca;cursor:pointer}.collapse-button .open{color:#428bca;cursor:pointer}.collapse-button.show .close{display:inline}.collapse-button.show .open{display:none}.collapse-content{max-height:0;overflow:hidden;transition:max-height .3s ease-in-out}nav{width:220px}.container{max-width:940px;margin-left:auto;margin-right:auto}.container .row .content{margin-left:244px;width:696px}.container .row:after{content:'';display:block;clear:both}.container-fluid nav{width:22%}.container-fluid .row .content{margin-left:24%;width:76%}@media (max-width:1200px){nav{width:200px}.container{max-width:840px}.container .row .content{margin-left:224px;width:606px}}@media (max-width:992px){nav{width:170px}.container{max-width:720px}.container .row .content{margin-left:194px;width:526px}}@media (max-width:768px){nav{display:none}.container{width:95%;max-width:none}.container .row .content,.container-fluid .row .content{margin-left:auto;margin-right:auto;width:95%}}.back-to-top{position:fixed;z-index:1;bottom:0;right:24px;padding:4px 8px;color:rgba(0,0,0,0.5);background-color:#f2f2f2;text-decoration:none !important;border-top:1px solid #d9d9d9;border-left:1px solid #d9d9d9;border-right:1px solid #d9d9d9;border-top-left-radius:3px;border-top-right-radius:3px}.resource-group{padding:12px;margin-bottom:12px;background-color:white;border:1px solid #d9d9d9;border-radius:6px}.resource-group h2.group-heading,.resource-group .heading a{padding:12px;margin:-12px -12px 12px -12px;background-color:#f2f2f2;border-bottom:1px solid #d9d9d9;border-top-left-radius:6px;border-top-right-radius:6px;white-space:nowrap;text-overflow:ellipsis;overflow:hidden}nav .resource-group .heading a{margin-bottom:0}nav .resource-group .collapse-content{padding:0}.action{margin-bottom:12px;padding:12px 12px 0 12px;overflow:hidden;border:1px solid transparent;border-radius:6px}.action h4.action-heading{padding:12px;margin:-12px -12px 12px -12px;border-bottom:1px solid transparent;border-top-left-radius:6px;border-top-right-radius:6px;white-space:nowrap;text-overflow:ellipsis;overflow:hidden}.action h4.action-heading .name{float:right;font-weight:normal}.action h4.action-heading .method{padding:6px 12px;margin-right:12px;border-radius:3px}.action h4.action-heading .method.get{color:#fff;background-color:#337ab7}.action h4.action-heading .method.head{color:#fff;background-color:#337ab7}.action h4.action-heading .method.options{color:#fff;background-color:#337ab7}.action h4.action-heading .method.put{color:#fff;background-color:#ed9c28}.action h4.action-heading .method.patch{color:#fff;background-color:#ed9c28}.action h4.action-heading .method.post{color:#fff;background-color:#5cb85c}.action h4.action-heading .method.delete{color:#fff;background-color:#d9534f}.action h4.action-heading code{color:#444;background-color:#f5f5f5;border-color:#cfcfcf;font-weight:normal}.action dl.inner{padding-bottom:2px}.action .title{border-bottom:1px solid white;margin:0 -12px -1px -12px;padding:12px}.action.get{border-color:#bce8f1}.action.get h4.action-heading{color:#337ab7;background:#d9edf7;border-bottom-color:#bce8f1}.action.head{border-color:#bce8f1}.action.head h4.action-heading{color:#337ab7;background:#d9edf7;border-bottom-color:#bce8f1}.action.options{border-color:#bce8f1}.action.options h4.action-heading{color:#337ab7;background:#d9edf7;border-bottom-color:#bce8f1}.action.post{border-color:#d6e9c6}.action.post h4.action-heading{color:#5cb85c;background:#dff0d8;border-bottom-color:#d6e9c6}.action.put{border-color:#faebcc}.action.put h4.action-heading{color:#ed9c28;background:#fcf8e3;border-bottom-color:#faebcc}.action.patch{border-color:#faebcc}.action.patch h4.action-heading{color:#ed9c28;background:#fcf8e3;border-bottom-color:#faebcc}.action.delete{border-color:#ebccd1}.action.delete h4.action-heading{color:#d9534f;background:#f2dede;border-bottom-color:#ebccd1}</style></head><body class="preload"><a href="#top" class="text-muted back-to-top"><i class="fa fa-toggle-up"></i>&nbsp;Back to top</a><div class="container"><div class="row"><nav><div class="resource-group"><div class="heading"><div class="chevron"><i class="open fa fa-angle-down"></i></div><a href="#colleges">colleges</a></div><div class="collapse-content"><ul><li><a href="#colleges-colleges-list">colleges list</a><ul><li><a href="#colleges-colleges-list-post"><span class="badge post"><i class="fa fa-plus"></i></span>create a new college</a></li><li><a href="#colleges-colleges-list-get"><span class="badge get"><i class="fa fa-arrow-down"></i></span>Retrieve list of all colleges</a></li></ul></li><li><a href="#colleges-college">college</a><ul><li><a href="#colleges-college-get"><span class="badge get"><i class="fa fa-arrow-down"></i></span>Retrieve a specific college</a></li><li><a href="#colleges-college-delete"><span class="badge delete"><i class="fa fa-times"></i></span>Delete a specific college</a></li></ul></li></ul></div></div><div class="resource-group"><div class="heading"><div class="chevron"><i class="open fa fa-angle-down"></i></div><a href="#courses">courses</a></div><div class="collapse-content"><ul><li><a href="#courses-courses-list">courses list</a><ul><li><a href="#courses-courses-list-post"><span class="badge post"><i class="fa fa-plus"></i></span>create a new course</a></li><li><a href="#courses-courses-list-get"><span class="badge get"><i class="fa fa-arrow-down"></i></span>Retrieve list of all courses</a></li></ul></li><li><a href="#courses-course">course</a><ul><li><a href="#courses-course-get"><span class="badge get"><i class="fa fa-arrow-down"></i></span>Retrieve a specific course</a></li><li><a href="#courses-course-delete"><span class="badge delete"><i class="fa fa-times"></i></span>Delete a specific course</a></li></ul></li></ul></div></div><div class="resource-group"><div class="heading"><div class="chevron"><i class="open fa fa-angle-down"></i></div><a href="#docs">docs</a></div><div class="collapse-content"><ul><li><a href="#docs-docs-list">docs list</a><ul><li><a href="#docs-docs-list-post"><span class="badge post"><i class="fa fa-plus"></i></span>create a new doc</a></li><li><a href="#docs-docs-list-get"><span class="badge get"><i class="fa fa-arrow-down"></i></span>Retrieve list of all docs</a></li></ul></li><li><a href="#docs-doc">doc</a><ul><li><a href="#docs-doc-get"><span class="badge get"><i class="fa fa-arrow-down"></i></span>Retrieve a specific doc</a></li><li><a href="#docs-doc-delete"><span class="badge delete"><i class="fa fa-times"></i></span>Delete a specific doc</a></li></ul></li></ul></div></div><div class="resource-group"><div class="heading"><div class="chevron"><i class="open fa fa-angle-down"></i></div><a href="#general">general</a></div><div class="collapse-content"><ul><li><a href="#general-general-get"><span class="badge get"><i class="fa fa-arrow-down"></i></span>Retrieves list of general courses</a></li><li><a href="#general-fetch-course-s-docs-list-get"><span class="badge get"><i class="fa fa-arrow-down"></i></span>fetch course's docs list</a></li></ul></div></div><div class="resource-group"><div class="heading"><div class="chevron"><i class="open fa fa-angle-down"></i></div><a href="#professional">professional</a></div><div class="collapse-content"><ul><li><a href="#professional-colleges-list-get"><span class="badge get"><i class="fa fa-arrow-down"></i></span>Retrieves list of colleges</a></li><li><a href="#professional-college-s-courses-list-get"><span class="badge get"><i class="fa fa-arrow-down"></i></span>Retrieves list of a colleges's courses</a></li></ul></div></div><div class="resource-group"><div class="heading"><div class="chevron"><i class="open fa fa-angle-down"></i></div><a href="#doc">Doc</a></div><div class="collapse-content"><ul><li><a href="#doc-lasted-docs-get"><span class="badge get"><i class="fa fa-arrow-down"></i></span>Retrieves six lasted docs</a></li><li><a href="#doc-hot-docs-get"><span class="badge get"><i class="fa fa-arrow-down"></i></span>Retrieves six hot docs</a></li><li><a href="#doc-download-a-doc-put"><span class="badge put"><i class="fa fa-pencil"></i></span>download a doc from server</a></li></ul></div></div></nav><div class="content"><header><h1 id="top">iDocument REST API</h1></header><section id="colleges" class="resource-group"><h2 class="group-heading">colleges<a href="#colleges" class="permalink">&para;</a></h2><div id="colleges-colleges-list" class="resource"><h3 class="resource-heading">colleges list<a href="#colleges-colleges-list" class="permalink">&para;</a></h3><div id="colleges-colleges-list-post" class="action post"><h4 class="action-heading"><div class="name">create a new college</div><a href="#colleges-colleges-list-post" class="method post">POST</a><code class="uri">/admin/colleges</code></h4><div class="title"><strong>Request</strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
+  name: <span class="hljs-string">'计算机与软件学院'</span>,
+  picture: <span class="hljs-string">'http://7qna7i.com1.z0.glb.clouddn.com/1.jpg'</span>
+}</code></pre><div style="height: 1px;"></div></div></div><div class="title"><strong>Response&nbsp;&nbsp;<code>200</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
+  success: <span class="hljs-string">'add a college successful!'</span>
+}</code></pre><div style="height: 1px;"></div></div></div></div><div id="colleges-colleges-list-get" class="action get"><h4 class="action-heading"><div class="name">Retrieve list of all colleges</div><a href="#colleges-colleges-list-get" class="method get">GET</a><code class="uri">/admin/colleges</code></h4><div class="title"><strong>Response&nbsp;&nbsp;<code>200</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>[{
+  name: <span class="hljs-string">'语言文化学院'</span>,
+  picture: <span class="hljs-string">'http://7qna7i.com1.z0.glb.clouddn.com/1.jpg'</span>
+},{
+  name: <span class="hljs-string">'计算机与软件学院'</span>,
+  picture: <span class="hljs-string">'http://7qna7i.com1.z0.glb.clouddn.com/1.jpg'</span>
+},{
+  name: <span class="hljs-string">'传媒学院'</span>,
+  picture: <span class="hljs-string">'http://7qna7i.com1.z0.glb.clouddn.com/1.jpg'</span>
+},{
+  name: <span class="hljs-string">'数学与统计学院'</span>,
+  picture: <span class="hljs-string">'http://7qna7i.com1.z0.glb.clouddn.com/1.jpg'</span>
+}]</code></pre><div style="height: 1px;"></div></div></div></div></div><div id="colleges-college" class="resource"><h3 class="resource-heading">college<a href="#colleges-college" class="permalink">&para;</a></h3><div id="colleges-college-get" class="action get"><h4 class="action-heading"><div class="name">Retrieve a specific college</div><a href="#colleges-college-get" class="method get">GET</a><code class="uri">/admin/colleges/{id}</code></h4><div class="title"><strong>Parameters</strong><div class="collapse-button show"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><dl class="inner"><dt>id</dt><dd><code>number</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>53113d6e1eb6e2b9546b5a91</p>
+</dd></dl></div><div class="title"><strong>Response&nbsp;&nbsp;<code>200</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
+  name: <span class="hljs-string">'语言文化学院'</span>,
+  picture: <span class="hljs-string">'http://7qna7i.com1.z0.glb.clouddn.com/1.jpg'</span>
+}</code></pre><div style="height: 1px;"></div></div></div></div><div id="colleges-college-delete" class="action delete"><h4 class="action-heading"><div class="name">Delete a specific college</div><a href="#colleges-college-delete" class="method delete">DELETE</a><code class="uri">/admin/colleges/{id}</code></h4><div class="title"><strong>Parameters</strong><div class="collapse-button show"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><dl class="inner"><dt>id</dt><dd><code>number</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>53113d6e1eb6e2b9546b5a91</p>
+</dd></dl></div><div class="title"><strong>Response&nbsp;&nbsp;<code>200</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
+ success: <span class="hljs-number">1</span>,
+ msg: <span class="hljs-string">'delete a college successfully!'</span>
+}</code></pre><div style="height: 1px;"></div></div></div><div class="title"><strong>Response&nbsp;&nbsp;<code>404</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{ 
+  success: <span class="hljs-number">0</span>,
+  msg: <span class="hljs-string">'college not found!'</span>
+}</code></pre><div style="height: 1px;"></div></div></div></div></div></section><section id="courses" class="resource-group"><h2 class="group-heading">courses<a href="#courses" class="permalink">&para;</a></h2><div id="courses-courses-list" class="resource"><h3 class="resource-heading">courses list<a href="#courses-courses-list" class="permalink">&para;</a></h3><div id="courses-courses-list-post" class="action post"><h4 class="action-heading"><div class="name">create a new course</div><a href="#courses-courses-list-post" class="method post">POST</a><code class="uri">/admin/courses</code></h4><div class="title"><strong>Request</strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
+  name: <span class="hljs-string">'数据结构'</span>,
+  type: <span class="hljs-string">'general'</span>,
+  college:<span class="hljs-string">'530fe1a120be5f5d51a7f658'</span>,
+  picture: <span class="hljs-string">'http://i1.tietuku.com/8b8295c011fbced1.jpg'</span>
+}</code></pre><div style="height: 1px;"></div></div></div><div class="title"><strong>Response&nbsp;&nbsp;<code>200</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
+  success: <span class="hljs-string">'add a course successful!'</span>
+}</code></pre><div style="height: 1px;"></div></div></div></div><div id="courses-courses-list-get" class="action get"><h4 class="action-heading"><div class="name">Retrieve list of all courses</div><a href="#courses-courses-list-get" class="method get">GET</a><code class="uri">/admin/courses</code></h4><div class="title"><strong>Response&nbsp;&nbsp;<code>200</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>[{
+  name: <span class="hljs-string">'数据结构'</span>,
+  type: <span class="hljs-string">'general'</span>,
+  college:<span class="hljs-string">'530fe1a120be5f5d51a7f658'</span>,
+  picture: <span class="hljs-string">'http://i1.tietuku.com/8b8295c011fbced1.jpg'</span>
+},{
+  name: <span class="hljs-string">'高等数学'</span>,
+  type: <span class="hljs-string">'general'</span>,
+  college:<span class="hljs-string">'530fe1a120be5f5d51a7f658'</span>,
+  picture: <span class="hljs-string">'http://i1.tietuku.com/8b8295c011fbced1.jpg'</span>
+},{
+  name: <span class="hljs-string">'大地测量学基础'</span>,
+  type: <span class="hljs-string">'professional'</span>,
+  college:<span class="hljs-string">'530fe1a120be5f5d51a7f658'</span>,
+  picture: <span class="hljs-string">'http://i1.tietuku.com/8b8295c011fbced1.jpg'</span>
+}]</code></pre><div style="height: 1px;"></div></div></div></div></div><div id="courses-course" class="resource"><h3 class="resource-heading">course<a href="#courses-course" class="permalink">&para;</a></h3><div id="courses-course-get" class="action get"><h4 class="action-heading"><div class="name">Retrieve a specific course</div><a href="#courses-course-get" class="method get">GET</a><code class="uri">/admin/courses/{id}</code></h4><div class="title"><strong>Parameters</strong><div class="collapse-button show"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><dl class="inner"><dt>id</dt><dd><code>number</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>53113d6e1eb6e2b9546b5a91</p>
+</dd></dl></div><div class="title"><strong>Response&nbsp;&nbsp;<code>200</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
+  name: <span class="hljs-string">'数据结构'</span>,
+  type: <span class="hljs-string">'general'</span>,
+  college:<span class="hljs-string">'530fe1a120be5f5d51a7f658'</span>,
+  picture: <span class="hljs-string">'http://i1.tietuku.com/8b8295c011fbced1.jpg'</span>
+}</code></pre><div style="height: 1px;"></div></div></div></div><div id="courses-course-delete" class="action delete"><h4 class="action-heading"><div class="name">Delete a specific course</div><a href="#courses-course-delete" class="method delete">DELETE</a><code class="uri">/admin/courses/{id}</code></h4><div class="title"><strong>Parameters</strong><div class="collapse-button show"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><dl class="inner"><dt>id</dt><dd><code>number</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>53113d6e1eb6e2b9546b5a91</p>
+</dd></dl></div><div class="title"><strong>Response&nbsp;&nbsp;<code>200</code></strong></div><div class="title"><strong>Response&nbsp;&nbsp;<code>404</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
+  error: <span class="hljs-string">'course not found!'</span>
+}</code></pre><div style="height: 1px;"></div></div></div></div></div></section><section id="docs" class="resource-group"><h2 class="group-heading">docs<a href="#docs" class="permalink">&para;</a></h2><div id="docs-docs-list" class="resource"><h3 class="resource-heading">docs list<a href="#docs-docs-list" class="permalink">&para;</a></h3><div id="docs-docs-list-post" class="action post"><h4 class="action-heading"><div class="name">create a new doc</div><a href="#docs-docs-list-post" class="method post">POST</a><code class="uri">/admin/docs</code></h4><div class="title"><strong>Request</strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
+  name: <span class="hljs-string">'高等数学1（理）09-10期末考试A卷及答案'</span>,
+  fileType: <span class="hljs-string">'pdf'</span>,
+  courseType: <span class="hljs-string">'general'</span>,
+  course:<span class="hljs-string">'530fe1a120be5f5d51a7f658'</span>,
+  college:<span class="hljs-string">'530fe1a120be5f5d51a7f658'</span>,
+  link: <span class="hljs-string">'http://pan.baidu.com/s/1pJyMqG7'</span>,
+  download: <span class="hljs-number">0</span>
+}</code></pre><div style="height: 1px;"></div></div></div><div class="title"><strong>Response&nbsp;&nbsp;<code>200</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
+  success: <span class="hljs-string">'add a doc successful!'</span>
+}</code></pre><div style="height: 1px;"></div></div></div></div><div id="docs-docs-list-get" class="action get"><h4 class="action-heading"><div class="name">Retrieve list of all docs</div><a href="#docs-docs-list-get" class="method get">GET</a><code class="uri">/admin/docs</code></h4><div class="title"><strong>Response&nbsp;&nbsp;<code>200</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>[{
+  name: <span class="hljs-string">'高等数学1（理）09-10期末考试A卷及答案'</span>,
+  fileType: <span class="hljs-string">'pdf'</span>,
+  courseType: <span class="hljs-string">'general'</span>,
+  course:<span class="hljs-string">'530fe1a120be5f5d51a7f658'</span>,
+  college:<span class="hljs-string">'530fe1a120be5f5d51a7f658'</span>,
+  link: <span class="hljs-string">'http://pan.baidu.com/s/1pJyMqG7'</span>,
+  download: <span class="hljs-number">0</span>
+},{
+  name: <span class="hljs-string">'C语言07-08期末试卷A卷'</span>,
+  fileType: <span class="hljs-string">'pdf'</span>,
+  courseType: <span class="hljs-string">'general'</span>,
+  course:<span class="hljs-string">'530fe1a120be5f5d51a7f658'</span>,
+  college:<span class="hljs-string">'530fe1a120be5f5d51a7f658'</span>,
+  link: <span class="hljs-string">'http://pan.baidu.com/s/1pJyMqG7'</span>,
+  download: <span class="hljs-number">0</span>
+},{
+  name: <span class="hljs-string">'高等数学1（理）09-10期末考试A卷及答案'</span>,
+  fileType: <span class="hljs-string">'pdf'</span>,
+  courseType: <span class="hljs-string">'general'</span>,
+  course:<span class="hljs-string">'530fe1a120be5f5d51a7f658'</span>,
+  college:<span class="hljs-string">'530fe1a120be5f5d51a7f658'</span>,
+  link: <span class="hljs-string">'http://pan.baidu.com/s/1pJyMqG7'</span>,
+  download: <span class="hljs-number">0</span>
+},]</code></pre><div style="height: 1px;"></div></div></div></div></div><div id="docs-doc" class="resource"><h3 class="resource-heading">doc<a href="#docs-doc" class="permalink">&para;</a></h3><div id="docs-doc-get" class="action get"><h4 class="action-heading"><div class="name">Retrieve a specific doc</div><a href="#docs-doc-get" class="method get">GET</a><code class="uri">/admin/docs/{id}</code></h4><div class="title"><strong>Parameters</strong><div class="collapse-button show"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><dl class="inner"><dt>id</dt><dd><code>ObjectId</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>53113d6e1eb6e2b9546b5a91</p>
+</dd></dl></div><div class="title"><strong>Response&nbsp;&nbsp;<code>200</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
+  name: <span class="hljs-string">'高等数学1（理）09-10期末考试A卷及答案'</span>,
+  fileType: <span class="hljs-string">'pdf'</span>,
+  courseType: <span class="hljs-string">'general'</span>,
+  course:<span class="hljs-string">'530fe1a120be5f5d51a7f658'</span>,
+  college:<span class="hljs-string">'530fe1a120be5f5d51a7f658'</span>,
+  link: <span class="hljs-string">'http://pan.baidu.com/s/1pJyMqG7'</span>,
+  download: <span class="hljs-number">0</span>
+}</code></pre><div style="height: 1px;"></div></div></div></div><div id="docs-doc-delete" class="action delete"><h4 class="action-heading"><div class="name">Delete a specific doc</div><a href="#docs-doc-delete" class="method delete">DELETE</a><code class="uri">/admin/docs/{id}</code></h4><div class="title"><strong>Parameters</strong><div class="collapse-button show"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><dl class="inner"><dt>id</dt><dd><code>ObjectId</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>53113d6e1eb6e2b9546b5a91</p>
+</dd></dl></div><div class="title"><strong>Response&nbsp;&nbsp;<code>200</code></strong></div><div class="title"><strong>Response&nbsp;&nbsp;<code>404</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
+  error: <span class="hljs-string">'doc not found!'</span>
+}</code></pre><div style="height: 1px;"></div></div></div></div></div></section><section id="general" class="resource-group"><h2 class="group-heading">general<a href="#general" class="permalink">&para;</a></h2><div id="general-general" class="resource"><h3 class="resource-heading">general<a href="#general-general" class="permalink">&para;</a></h3><div id="general-general-get" class="action get"><h4 class="action-heading"><div class="name">Retrieves list of general courses</div><a href="#general-general-get" class="method get">GET</a><code class="uri">/api/general</code></h4><div class="title"><strong>Response&nbsp;&nbsp;<code>200</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>[
+  {
+    "<span class="hljs-attribute">_id</span>": <span class="hljs-value"><span class="hljs-string">"560957d047a9a60dc8070757"</span></span>,
+    "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"计算机组成原理"</span></span>,
+    "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"general"</span></span>,
+    "<span class="hljs-attribute">college</span>": <span class="hljs-value"><span class="hljs-string">"5609222f57dec8cd9ad529a3"</span></span>,
+    "<span class="hljs-attribute">picture</span>": <span class="hljs-value"><span class="hljs-string">"http://i1.tietuku.com/8b8295c011fbced1.jpg"</span></span>,
+    "<span class="hljs-attribute">__v</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
+    "<span class="hljs-attribute">meta</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">updateAt</span>": <span class="hljs-value"><span class="hljs-string">"2015-09-28T15:08:00.261Z"</span></span>,
+      "<span class="hljs-attribute">createAt</span>": <span class="hljs-value"><span class="hljs-string">"2015-09-28T15:08:00.261Z"</span>
+    </span>}
+  </span>},
+  {
+    "<span class="hljs-attribute">_id</span>": <span class="hljs-value"><span class="hljs-string">"5609685b130a14ebe58445ad"</span></span>,
+    "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"C语言程序设计"</span></span>,
+    "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"general"</span></span>,
+    "<span class="hljs-attribute">college</span>": <span class="hljs-value"><span class="hljs-string">"5609222f57dec8cd9ad529a3"</span></span>,
+    "<span class="hljs-attribute">picture</span>": <span class="hljs-value"><span class="hljs-string">"http://i1.tietuku.com/8b8295c011fbced1.jpg"</span></span>,
+    "<span class="hljs-attribute">__v</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
+    "<span class="hljs-attribute">meta</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">updateAt</span>": <span class="hljs-value"><span class="hljs-string">"2015-09-28T16:18:35.654Z"</span></span>,
+      "<span class="hljs-attribute">createAt</span>": <span class="hljs-value"><span class="hljs-string">"2015-09-28T16:18:35.654Z"</span>
+    </span>}
+  </span>},
+  {
+    "<span class="hljs-attribute">_id</span>": <span class="hljs-value"><span class="hljs-string">"5609683d130a14ebe58445ac"</span></span>,
+    "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"高等数学"</span></span>,
+    "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"general"</span></span>,
+    "<span class="hljs-attribute">college</span>": <span class="hljs-value"><span class="hljs-string">"560967f2130a14ebe58445a9"</span></span>,
+    "<span class="hljs-attribute">picture</span>": <span class="hljs-value"><span class="hljs-string">"http://i1.tietuku.com/8b8295c011fbced1.jpg"</span></span>,
+    "<span class="hljs-attribute">__v</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
+    "<span class="hljs-attribute">meta</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">updateAt</span>": <span class="hljs-value"><span class="hljs-string">"2015-09-28T16:18:05.519Z"</span></span>,
+      "<span class="hljs-attribute">createAt</span>": <span class="hljs-value"><span class="hljs-string">"2015-09-28T16:18:05.519Z"</span>
+    </span>}
+  </span>}
+]</code></pre><div style="height: 1px;"></div></div></div></div></div><div id="general-fetch-course-s-docs-list" class="resource"><h3 class="resource-heading">fetch course's docs list<a href="#general-fetch-course-s-docs-list" class="permalink">&para;</a></h3><div id="general-fetch-course-s-docs-list-get" class="action get"><h4 class="action-heading"><div class="name">fetch course's docs list</div><a href="#general-fetch-course-s-docs-list-get" class="method get">GET</a><code class="uri">/api/courses/{courseId}</code></h4><div class="title"><strong>Parameters</strong><div class="collapse-button show"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><dl class="inner"><dt>courseId</dt><dd><code>ObjecId</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>a special course</p>
+</dd></dl></div><div class="title"><strong>Response&nbsp;&nbsp;<code>200</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>[
+  {
+    "<span class="hljs-attribute">_id</span>": <span class="hljs-value"><span class="hljs-string">"5609661b130a14ebe58445a8"</span></span>,
+    "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"计算机组成原理2015期末卷"</span></span>,
+    "<span class="hljs-attribute">fileType</span>": <span class="hljs-value"><span class="hljs-string">"pdf"</span></span>,
+    "<span class="hljs-attribute">course</span>": <span class="hljs-value"><span class="hljs-string">"560957d047a9a60dc8070757"</span></span>,
+    "<span class="hljs-attribute">college</span>": <span class="hljs-value"><span class="hljs-string">"5609222f57dec8cd9ad529a3"</span></span>,
+    "<span class="hljs-attribute">link</span>": <span class="hljs-value"><span class="hljs-string">"http://pan.baidu.com/s/1pJyMqG7"</span></span>,
+    "<span class="hljs-attribute">download</span>": <span class="hljs-value"><span class="hljs-number">2</span></span>,
+    "<span class="hljs-attribute">__v</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
+    "<span class="hljs-attribute">meta</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">updateAt</span>": <span class="hljs-value"><span class="hljs-string">"2015-09-28T16:08:59.119Z"</span></span>,
+      "<span class="hljs-attribute">createAt</span>": <span class="hljs-value"><span class="hljs-string">"2015-09-28T16:08:59.119Z"</span>
+    </span>}
+  </span>}
+]</code></pre><div style="height: 1px;"></div></div></div></div></div></section><section id="professional" class="resource-group"><h2 class="group-heading">professional<a href="#professional" class="permalink">&para;</a></h2><div id="professional-colleges-list" class="resource"><h3 class="resource-heading">colleges list<a href="#professional-colleges-list" class="permalink">&para;</a></h3><div id="professional-colleges-list-get" class="action get"><h4 class="action-heading"><div class="name">Retrieves list of colleges</div><a href="#professional-colleges-list-get" class="method get">GET</a><code class="uri">/api/professional</code></h4><div class="title"><strong>Response&nbsp;&nbsp;<code>200</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>[
+  {
+    "<span class="hljs-attribute">_id</span>": <span class="hljs-value"><span class="hljs-string">"5609222f57dec8cd9ad529a3"</span></span>,
+    "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"计算机与软件学院"</span></span>,
+    "<span class="hljs-attribute">picture</span>": <span class="hljs-value"><span class="hljs-string">"/img/1.jpgdddd"</span></span>,
+    "<span class="hljs-attribute">__v</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
+    "<span class="hljs-attribute">meta</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">updateAt</span>": <span class="hljs-value"><span class="hljs-string">"2015-09-28T11:22:23.967Z"</span></span>,
+      "<span class="hljs-attribute">createAt</span>": <span class="hljs-value"><span class="hljs-string">"2015-09-28T11:19:11.669Z"</span>
+    </span>}
+  </span>},
+  {
+    "<span class="hljs-attribute">_id</span>": <span class="hljs-value"><span class="hljs-string">"56094b5378b11ef7b0bf7ab5"</span></span>,
+    "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"语言文化学院"</span></span>,
+    "<span class="hljs-attribute">picture</span>": <span class="hljs-value"><span class="hljs-string">"/img/2.jpg"</span></span>,
+    "<span class="hljs-attribute">__v</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
+    "<span class="hljs-attribute">meta</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">updateAt</span>": <span class="hljs-value"><span class="hljs-string">"2015-09-28T14:14:43.654Z"</span></span>,
+      "<span class="hljs-attribute">createAt</span>": <span class="hljs-value"><span class="hljs-string">"2015-09-28T14:14:43.654Z"</span>
+    </span>}
+  </span>},
+  {
+    "<span class="hljs-attribute">_id</span>": <span class="hljs-value"><span class="hljs-string">"560967f2130a14ebe58445a9"</span></span>,
+    "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"数学与统计学院"</span></span>,
+    "<span class="hljs-attribute">picture</span>": <span class="hljs-value"><span class="hljs-string">"/img/1.jpg"</span></span>,
+    "<span class="hljs-attribute">__v</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
+    "<span class="hljs-attribute">meta</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">updateAt</span>": <span class="hljs-value"><span class="hljs-string">"2015-09-28T16:16:50.172Z"</span></span>,
+      "<span class="hljs-attribute">createAt</span>": <span class="hljs-value"><span class="hljs-string">"2015-09-28T16:16:50.172Z"</span>
+    </span>}
+  </span>},
+  {
+    "<span class="hljs-attribute">_id</span>": <span class="hljs-value"><span class="hljs-string">"5609680c130a14ebe58445aa"</span></span>,
+    "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"大气科学学院"</span></span>,
+    "<span class="hljs-attribute">picture</span>": <span class="hljs-value"><span class="hljs-string">"/img/1.jpg"</span></span>,
+    "<span class="hljs-attribute">__v</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
+    "<span class="hljs-attribute">meta</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">updateAt</span>": <span class="hljs-value"><span class="hljs-string">"2015-09-28T16:17:16.357Z"</span></span>,
+      "<span class="hljs-attribute">createAt</span>": <span class="hljs-value"><span class="hljs-string">"2015-09-28T16:17:16.357Z"</span>
+    </span>}
+  </span>},
+  {
+    "<span class="hljs-attribute">_id</span>": <span class="hljs-value"><span class="hljs-string">"5609681d130a14ebe58445ab"</span></span>,
+    "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"水文气象学院"</span></span>,
+    "<span class="hljs-attribute">picture</span>": <span class="hljs-value"><span class="hljs-string">"/img/1.jpg"</span></span>,
+    "<span class="hljs-attribute">__v</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
+    "<span class="hljs-attribute">meta</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">updateAt</span>": <span class="hljs-value"><span class="hljs-string">"2015-09-28T16:17:33.965Z"</span></span>,
+      "<span class="hljs-attribute">createAt</span>": <span class="hljs-value"><span class="hljs-string">"2015-09-28T16:17:33.965Z"</span>
+    </span>}
+  </span>}
+]</code></pre><div style="height: 1px;"></div></div></div></div></div><div id="professional-college-s-courses-list" class="resource"><h3 class="resource-heading">college's courses list<a href="#professional-college-s-courses-list" class="permalink">&para;</a></h3><div id="professional-college-s-courses-list-get" class="action get"><h4 class="action-heading"><div class="name">Retrieves list of a colleges's courses</div><a href="#professional-college-s-courses-list-get" class="method get">GET</a><code class="uri">/api/professional/{collegeId}</code></h4><div class="title"><strong>Parameters</strong><div class="collapse-button show"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><dl class="inner"><dt>collegeId</dt><dd><code>ObjecId</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>a special college</p>
+</dd></dl></div><div class="title"><strong>Response&nbsp;&nbsp;<code>200</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>[
+  {
+    "<span class="hljs-attribute">_id</span>": <span class="hljs-value"><span class="hljs-string">"560957d047a9a60dc8070757"</span></span>,
+    "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"计算机组成原理"</span></span>,
+    "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"general"</span></span>,
+    "<span class="hljs-attribute">college</span>": <span class="hljs-value"><span class="hljs-string">"5609222f57dec8cd9ad529a3"</span></span>,
+    "<span class="hljs-attribute">picture</span>": <span class="hljs-value"><span class="hljs-string">"http://i1.tietuku.com/8b8295c011fbced1.jpg"</span></span>,
+    "<span class="hljs-attribute">__v</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
+    "<span class="hljs-attribute">meta</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">updateAt</span>": <span class="hljs-value"><span class="hljs-string">"2015-09-28T15:08:00.261Z"</span></span>,
+      "<span class="hljs-attribute">createAt</span>": <span class="hljs-value"><span class="hljs-string">"2015-09-28T15:08:00.261Z"</span>
+    </span>}
+  </span>},
+  {
+    "<span class="hljs-attribute">_id</span>": <span class="hljs-value"><span class="hljs-string">"5609685b130a14ebe58445ad"</span></span>,
+    "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"C语言程序设计"</span></span>,
+    "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"general"</span></span>,
+    "<span class="hljs-attribute">college</span>": <span class="hljs-value"><span class="hljs-string">"5609222f57dec8cd9ad529a3"</span></span>,
+    "<span class="hljs-attribute">picture</span>": <span class="hljs-value"><span class="hljs-string">"http://i1.tietuku.com/8b8295c011fbced1.jpg"</span></span>,
+    "<span class="hljs-attribute">__v</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
+    "<span class="hljs-attribute">meta</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">updateAt</span>": <span class="hljs-value"><span class="hljs-string">"2015-09-28T16:18:35.654Z"</span></span>,
+      "<span class="hljs-attribute">createAt</span>": <span class="hljs-value"><span class="hljs-string">"2015-09-28T16:18:35.654Z"</span>
+    </span>}
+  </span>},
+  {
+    "<span class="hljs-attribute">_id</span>": <span class="hljs-value"><span class="hljs-string">"56096872130a14ebe58445ae"</span></span>,
+    "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"操作系统"</span></span>,
+    "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"professional"</span></span>,
+    "<span class="hljs-attribute">college</span>": <span class="hljs-value"><span class="hljs-string">"5609222f57dec8cd9ad529a3"</span></span>,
+    "<span class="hljs-attribute">picture</span>": <span class="hljs-value"><span class="hljs-string">"http://i1.tietuku.com/8b8295c011fbced1.jpg"</span></span>,
+    "<span class="hljs-attribute">__v</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
+    "<span class="hljs-attribute">meta</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">updateAt</span>": <span class="hljs-value"><span class="hljs-string">"2015-09-28T16:18:58.541Z"</span></span>,
+      "<span class="hljs-attribute">createAt</span>": <span class="hljs-value"><span class="hljs-string">"2015-09-28T16:18:58.541Z"</span>
+    </span>}
+  </span>},
+  {
+    "<span class="hljs-attribute">_id</span>": <span class="hljs-value"><span class="hljs-string">"560968ba130a14ebe58445af"</span></span>,
+    "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"面向对象程序设计"</span></span>,
+    "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"professional"</span></span>,
+    "<span class="hljs-attribute">college</span>": <span class="hljs-value"><span class="hljs-string">"5609222f57dec8cd9ad529a3"</span></span>,
+    "<span class="hljs-attribute">picture</span>": <span class="hljs-value"><span class="hljs-string">"http://i1.tietuku.com/8b8295c011fbced1.jpg"</span></span>,
+    "<span class="hljs-attribute">__v</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
+    "<span class="hljs-attribute">meta</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">updateAt</span>": <span class="hljs-value"><span class="hljs-string">"2015-09-28T16:20:10.457Z"</span></span>,
+      "<span class="hljs-attribute">createAt</span>": <span class="hljs-value"><span class="hljs-string">"2015-09-28T16:20:10.457Z"</span>
+    </span>}
+  </span>}
+]</code></pre><div style="height: 1px;"></div></div></div></div></div></section><section id="doc" class="resource-group"><h2 class="group-heading">Doc<a href="#doc" class="permalink">&para;</a></h2><div id="doc-lasted-docs" class="resource"><h3 class="resource-heading">lasted docs<a href="#doc-lasted-docs" class="permalink">&para;</a></h3><div id="doc-lasted-docs-get" class="action get"><h4 class="action-heading"><div class="name">Retrieves six lasted docs</div><a href="#doc-lasted-docs-get" class="method get">GET</a><code class="uri">/api/docs/lasted</code></h4><div class="title"><strong>Response&nbsp;&nbsp;<code>200</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>[
+  {
+    "<span class="hljs-attribute">_id</span>": <span class="hljs-value"><span class="hljs-string">"5609691a130a14ebe58445b2"</span></span>,
+    "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"高等数学1（理）11-12期末考试A卷及答案"</span></span>,
+    "<span class="hljs-attribute">fileType</span>": <span class="hljs-value"><span class="hljs-string">"pdf"</span></span>,
+    "<span class="hljs-attribute">course</span>": <span class="hljs-value"><span class="hljs-string">"5609683d130a14ebe58445ac"</span></span>,
+    "<span class="hljs-attribute">college</span>": <span class="hljs-value"><span class="hljs-string">"5609222f57dec8cd9ad529a3"</span></span>,
+    "<span class="hljs-attribute">link</span>": <span class="hljs-value"><span class="hljs-string">"http://pan.baidu.com/s/1pJyMqG7"</span></span>,
+    "<span class="hljs-attribute">download</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
+    "<span class="hljs-attribute">__v</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
+    "<span class="hljs-attribute">meta</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">updateAt</span>": <span class="hljs-value"><span class="hljs-string">"2015-09-28T16:21:46.168Z"</span></span>,
+      "<span class="hljs-attribute">createAt</span>": <span class="hljs-value"><span class="hljs-string">"2015-09-28T16:21:46.168Z"</span>
+    </span>}
+  </span>},
+  {
+    "<span class="hljs-attribute">_id</span>": <span class="hljs-value"><span class="hljs-string">"56096900130a14ebe58445b1"</span></span>,
+    "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"高等数学1（理）10-11期末考试A卷及答案"</span></span>,
+    "<span class="hljs-attribute">fileType</span>": <span class="hljs-value"><span class="hljs-string">"pdf"</span></span>,
+    "<span class="hljs-attribute">course</span>": <span class="hljs-value"><span class="hljs-string">"5609683d130a14ebe58445ac"</span></span>,
+    "<span class="hljs-attribute">college</span>": <span class="hljs-value"><span class="hljs-string">"5609222f57dec8cd9ad529a3"</span></span>,
+    "<span class="hljs-attribute">link</span>": <span class="hljs-value"><span class="hljs-string">"http://pan.baidu.com/s/1pJyMqG7"</span></span>,
+    "<span class="hljs-attribute">download</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
+    "<span class="hljs-attribute">__v</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
+    "<span class="hljs-attribute">meta</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">updateAt</span>": <span class="hljs-value"><span class="hljs-string">"2015-09-28T16:21:20.089Z"</span></span>,
+      "<span class="hljs-attribute">createAt</span>": <span class="hljs-value"><span class="hljs-string">"2015-09-28T16:21:20.089Z"</span>
+    </span>}
+  </span>},
+  {
+    "<span class="hljs-attribute">_id</span>": <span class="hljs-value"><span class="hljs-string">"560968e3130a14ebe58445b0"</span></span>,
+    "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"高等数学1（理）09-10期末考试A卷及答案"</span></span>,
+    "<span class="hljs-attribute">fileType</span>": <span class="hljs-value"><span class="hljs-string">"pdf"</span></span>,
+    "<span class="hljs-attribute">course</span>": <span class="hljs-value"><span class="hljs-string">"5609683d130a14ebe58445ac"</span></span>,
+    "<span class="hljs-attribute">college</span>": <span class="hljs-value"><span class="hljs-string">"5609222f57dec8cd9ad529a3"</span></span>,
+    "<span class="hljs-attribute">link</span>": <span class="hljs-value"><span class="hljs-string">"http://pan.baidu.com/s/1pJyMqG7"</span></span>,
+    "<span class="hljs-attribute">download</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
+    "<span class="hljs-attribute">__v</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
+    "<span class="hljs-attribute">meta</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">updateAt</span>": <span class="hljs-value"><span class="hljs-string">"2015-09-28T16:20:51.836Z"</span></span>,
+      "<span class="hljs-attribute">createAt</span>": <span class="hljs-value"><span class="hljs-string">"2015-09-28T16:20:51.836Z"</span>
+    </span>}
+  </span>},
+  {
+    "<span class="hljs-attribute">_id</span>": <span class="hljs-value"><span class="hljs-string">"5609661b130a14ebe58445a8"</span></span>,
+    "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"计算机组成原理2015期末卷"</span></span>,
+    "<span class="hljs-attribute">fileType</span>": <span class="hljs-value"><span class="hljs-string">"pdf"</span></span>,
+    "<span class="hljs-attribute">course</span>": <span class="hljs-value"><span class="hljs-string">"560957d047a9a60dc8070757"</span></span>,
+    "<span class="hljs-attribute">college</span>": <span class="hljs-value"><span class="hljs-string">"5609222f57dec8cd9ad529a3"</span></span>,
+    "<span class="hljs-attribute">link</span>": <span class="hljs-value"><span class="hljs-string">"http://pan.baidu.com/s/1pJyMqG7"</span></span>,
+    "<span class="hljs-attribute">download</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
+    "<span class="hljs-attribute">__v</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
+    "<span class="hljs-attribute">meta</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">updateAt</span>": <span class="hljs-value"><span class="hljs-string">"2015-09-28T16:08:59.119Z"</span></span>,
+      "<span class="hljs-attribute">createAt</span>": <span class="hljs-value"><span class="hljs-string">"2015-09-28T16:08:59.119Z"</span>
+    </span>}
+  </span>}
+]</code></pre><div style="height: 1px;"></div></div></div></div></div><div id="doc-hot-docs" class="resource"><h3 class="resource-heading">hot docs<a href="#doc-hot-docs" class="permalink">&para;</a></h3><div id="doc-hot-docs-get" class="action get"><h4 class="action-heading"><div class="name">Retrieves six hot docs</div><a href="#doc-hot-docs-get" class="method get">GET</a><code class="uri">/api/docs/hot</code></h4><div class="title"><strong>Response&nbsp;&nbsp;<code>200</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>[
+  {
+    "<span class="hljs-attribute">_id</span>": <span class="hljs-value"><span class="hljs-string">"5609661b130a14ebe58445a8"</span></span>,
+    "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"计算机组成原理2015期末卷"</span></span>,
+    "<span class="hljs-attribute">fileType</span>": <span class="hljs-value"><span class="hljs-string">"pdf"</span></span>,
+    "<span class="hljs-attribute">course</span>": <span class="hljs-value"><span class="hljs-string">"560957d047a9a60dc8070757"</span></span>,
+    "<span class="hljs-attribute">college</span>": <span class="hljs-value"><span class="hljs-string">"5609222f57dec8cd9ad529a3"</span></span>,
+    "<span class="hljs-attribute">link</span>": <span class="hljs-value"><span class="hljs-string">"http://pan.baidu.com/s/1pJyMqG7"</span></span>,
+    "<span class="hljs-attribute">download</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
+    "<span class="hljs-attribute">__v</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
+    "<span class="hljs-attribute">meta</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">updateAt</span>": <span class="hljs-value"><span class="hljs-string">"2015-09-28T16:08:59.119Z"</span></span>,
+      "<span class="hljs-attribute">createAt</span>": <span class="hljs-value"><span class="hljs-string">"2015-09-28T16:08:59.119Z"</span>
+    </span>}
+  </span>},
+  {
+    "<span class="hljs-attribute">_id</span>": <span class="hljs-value"><span class="hljs-string">"560968e3130a14ebe58445b0"</span></span>,
+    "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"高等数学1（理）09-10期末考试A卷及答案"</span></span>,
+    "<span class="hljs-attribute">fileType</span>": <span class="hljs-value"><span class="hljs-string">"pdf"</span></span>,
+    "<span class="hljs-attribute">course</span>": <span class="hljs-value"><span class="hljs-string">"5609683d130a14ebe58445ac"</span></span>,
+    "<span class="hljs-attribute">college</span>": <span class="hljs-value"><span class="hljs-string">"5609222f57dec8cd9ad529a3"</span></span>,
+    "<span class="hljs-attribute">link</span>": <span class="hljs-value"><span class="hljs-string">"http://pan.baidu.com/s/1pJyMqG7"</span></span>,
+    "<span class="hljs-attribute">download</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
+    "<span class="hljs-attribute">__v</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
+    "<span class="hljs-attribute">meta</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">updateAt</span>": <span class="hljs-value"><span class="hljs-string">"2015-09-28T16:20:51.836Z"</span></span>,
+      "<span class="hljs-attribute">createAt</span>": <span class="hljs-value"><span class="hljs-string">"2015-09-28T16:20:51.836Z"</span>
+    </span>}
+  </span>},
+  {
+    "<span class="hljs-attribute">_id</span>": <span class="hljs-value"><span class="hljs-string">"56096900130a14ebe58445b1"</span></span>,
+    "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"高等数学1（理）10-11期末考试A卷及答案"</span></span>,
+    "<span class="hljs-attribute">fileType</span>": <span class="hljs-value"><span class="hljs-string">"pdf"</span></span>,
+    "<span class="hljs-attribute">course</span>": <span class="hljs-value"><span class="hljs-string">"5609683d130a14ebe58445ac"</span></span>,
+    "<span class="hljs-attribute">college</span>": <span class="hljs-value"><span class="hljs-string">"5609222f57dec8cd9ad529a3"</span></span>,
+    "<span class="hljs-attribute">link</span>": <span class="hljs-value"><span class="hljs-string">"http://pan.baidu.com/s/1pJyMqG7"</span></span>,
+    "<span class="hljs-attribute">download</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
+    "<span class="hljs-attribute">__v</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
+    "<span class="hljs-attribute">meta</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">updateAt</span>": <span class="hljs-value"><span class="hljs-string">"2015-09-28T16:21:20.089Z"</span></span>,
+      "<span class="hljs-attribute">createAt</span>": <span class="hljs-value"><span class="hljs-string">"2015-09-28T16:21:20.089Z"</span>
+    </span>}
+  </span>},
+  {
+    "<span class="hljs-attribute">_id</span>": <span class="hljs-value"><span class="hljs-string">"5609691a130a14ebe58445b2"</span></span>,
+    "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"高等数学1（理）11-12期末考试A卷及答案"</span></span>,
+    "<span class="hljs-attribute">fileType</span>": <span class="hljs-value"><span class="hljs-string">"pdf"</span></span>,
+    "<span class="hljs-attribute">course</span>": <span class="hljs-value"><span class="hljs-string">"5609683d130a14ebe58445ac"</span></span>,
+    "<span class="hljs-attribute">college</span>": <span class="hljs-value"><span class="hljs-string">"5609222f57dec8cd9ad529a3"</span></span>,
+    "<span class="hljs-attribute">link</span>": <span class="hljs-value"><span class="hljs-string">"http://pan.baidu.com/s/1pJyMqG7"</span></span>,
+    "<span class="hljs-attribute">download</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
+    "<span class="hljs-attribute">__v</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
+    "<span class="hljs-attribute">meta</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">updateAt</span>": <span class="hljs-value"><span class="hljs-string">"2015-09-28T16:21:46.168Z"</span></span>,
+      "<span class="hljs-attribute">createAt</span>": <span class="hljs-value"><span class="hljs-string">"2015-09-28T16:21:46.168Z"</span>
+    </span>}
+  </span>}
+]</code></pre><div style="height: 1px;"></div></div></div></div></div><div id="doc-download-a-doc" class="resource"><h3 class="resource-heading">download a doc<a href="#doc-download-a-doc" class="permalink">&para;</a></h3><div id="doc-download-a-doc-put" class="action put"><h4 class="action-heading"><div class="name">download a doc from server</div><a href="#doc-download-a-doc-put" class="method put">PUT</a><code class="uri">/api/docs/downloaded</code></h4><div class="title"><strong>Response&nbsp;&nbsp;<code>200</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
+  success: 1
+}</code></pre><div style="height: 1px;"></div></div></div></div></div></section></div></div></div><p style="text-align: center;" class="text-muted">Generated by&nbsp;<a href="https://github.com/danielgtaylor/aglio" class="aglio">aglio</a>&nbsp;on 29 Sep 2015</p><script>/* eslint-env browser */
+/* eslint quotes: [2, "single"] */
+'use strict';
+
+/*
+  Determine if a string ends with another string.
+*/
+function endsWith(str, suffix) {
+    return str.indexOf(suffix, str.length - suffix.length) !== -1;
+}
+
+/*
+  Get an array [width, height] of the window.
+*/
+function getWindowDimensions() {
+  var w = window,
+      d = document,
+      e = d.documentElement,
+      g = d.body,
+      x = w.innerWidth || e.clientWidth || g.clientWidth,
+      y = w.innerHeight || e.clientHeight || g.clientHeight;
+
+  return [x, y];
+}
+
+/*
+  Collapse or show a request/response example.
+*/
+function toggleCollapseButton(event) {
+    var button = event.target.parentNode;
+    var content = button.parentNode.nextSibling;
+    var inner = content.children[0];
+
+    if (button.className.indexOf('collapse-button') === -1) {
+      // Clicked without hitting the right element?
+      return;
+    }
+
+    if (content.style.maxHeight && content.style.maxHeight !== '0px') {
+        // Currently showing, so let's hide it
+        button.className = 'collapse-button';
+        content.style.maxHeight = '0px';
+    } else {
+        // Currently hidden, so let's show it
+        button.className = 'collapse-button show';
+        content.style.maxHeight = inner.offsetHeight + 12 + 'px';
+    }
+}
+
+/*
+  Collapse or show a navigation menu. It will not be hidden unless it
+  is currently selected or `force` has been passed.
+*/
+function toggleCollapseNav(event, force) {
+    var heading = event.target.parentNode;
+    var content = heading.nextSibling;
+    var inner = content.children[0];
+
+    if (heading.className.indexOf('heading') === -1) {
+      // Clicked without hitting the right element?
+      return;
+    }
+
+    if (content.style.maxHeight && content.style.maxHeight !== '0px') {
+      // Currently showing, so let's hide it, but only if this nav item
+      // is already selected. This prevents newly selected items from
+      // collapsing in an annoying fashion.
+      if (force || window.location.hash && endsWith(event.target.href, window.location.hash)) {
+        content.style.maxHeight = '0px';
+      }
+    } else {
+      // Currently hidden, so let's show it
+      content.style.maxHeight = inner.offsetHeight + 12 + 'px';
+    }
+}
+
+/*
+  Refresh the page after a live update from the server. This only
+  works in live preview mode (using the `--server` parameter).
+*/
+function refresh(body) {
+    document.querySelector('body').className = 'preload';
+    document.body.innerHTML = body;
+
+    // Re-initialize the page
+    init();
+    autoCollapse();
+
+    document.querySelector('body').className = '';
+}
+
+/*
+  Determine which navigation items should be auto-collapsed to show as many
+  as possible on the screen, based on the current window height. This also
+  collapses them.
+*/
+function autoCollapse() {
+  var windowHeight = getWindowDimensions()[1];
+  var itemsHeight = 64; /* Account for some padding */
+  var itemsArray = Array.prototype.slice.call(
+    document.querySelectorAll('nav .resource-group .heading'));
+
+  // Get the total height of the navigation items
+  itemsArray.forEach(function (item) {
+    itemsHeight += item.parentNode.offsetHeight;
+  });
+
+  // Should we auto-collapse any nav items? Try to find the smallest item
+  // that can be collapsed to show all items on the screen. If not possible,
+  // then collapse the largest item and do it again. First, sort the items
+  // by height from smallest to largest.
+  var sortedItems = itemsArray.sort(function (a, b) {
+    return a.parentNode.offsetHeight - b.parentNode.offsetHeight;
+  });
+
+  while (sortedItems.length && itemsHeight > windowHeight) {
+    for (var i = 0; i < sortedItems.length; i++) {
+      // Will collapsing this item help?
+      var itemHeight = sortedItems[i].nextSibling.offsetHeight;
+      if ((itemsHeight - itemHeight <= windowHeight) || i === sortedItems.length - 1) {
+        // It will, so let's collapse it, remove its content height from
+        // our total and then remove it from our list of candidates
+        // that can be collapsed.
+        itemsHeight -= itemHeight;
+        toggleCollapseNav({target: sortedItems[i].children[0]}, true);
+        sortedItems.splice(i, 1);
+        break;
+      }
+    }
+  }
+}
+
+/*
+  Initialize the interactive functionality of the page.
+*/
+function init() {
+    var i;
+
+    // Make collapse buttons clickable
+    var buttons = document.querySelectorAll('.collapse-button');
+    for (i = 0; i < buttons.length; i++) {
+        buttons[i].onclick = toggleCollapseButton;
+
+        // Show by default? Then toggle now.
+        if (buttons[i].className.indexOf('show') !== -1) {
+            toggleCollapseButton({target: buttons[i].children[0]});
+        }
+    }
+
+    // Make nav items clickable to collapse/expand their content.
+    var navItems = document.querySelectorAll('nav .resource-group .heading');
+    for (i = 0; i < navItems.length; i++) {
+        navItems[i].onclick = toggleCollapseNav;
+
+        // Show all by default
+        toggleCollapseNav({target: navItems[i].children[0]});
+    }
+}
+
+// Initial call to set up buttons
+init();
+
+window.onload = function () {
+    autoCollapse();
+    // Remove the `preload` class to enable animations
+    document.querySelector('body').className = '';
+};
+</script></body></html>

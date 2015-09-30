@@ -1,0 +1,24 @@
+extends layout
+
+block content
+  .panel.panel-default
+    .panel-heading
+      h3.panel-title 文档列表
+    table.table.table-bordered.table-hover
+      thead
+        tr
+          th 文档名字
+          th 编辑
+          th 删除
+      tbody
+        if docs
+          each doc in docs
+            tr(class="item-id-#{doc._id}")
+              th #{doc.name}
+              th
+                a.btn.btn-primary.btn-sm(href="/admin/docs/#{doc._id}/edit") 编辑
+              th
+                a.btn.btn-danger.btn-sm.del(data-id="#{doc._id}",href="javascript:;") 删除
+  script(src="/js/deldoc.js")
+  
+
