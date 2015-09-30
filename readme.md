@@ -61,7 +61,7 @@ $.ajax({url:'/rest',type:'delete',success:function(data){
 
 ####服务器端：
 
-express的router模块实现了router.METHOD支持router.get,router.post,router.put,router.delte等方法。	
+express的router模块实现了router.METHOD支持router.get,router.post,router.put,router.delete等方法。	
 ##使用express,MongoDb快速构建Node.js REST API
 	
 ### express
